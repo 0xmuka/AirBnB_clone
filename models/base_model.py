@@ -19,7 +19,7 @@ class BaseModel:
         return ("[{}] ({}) {}").format(self.__class__.__name__, self.id, self.__dict__)
     
     def save(self):
-        """bla bla bla"""
+        """bla bal"""
         self.updated_at = datetime.now()
         
     def to_dict(self):
@@ -29,5 +29,4 @@ class BaseModel:
         obj_dict['created_at'] = self.created_at.isoformat()
         obj_dict['updated_at'] = self.updated_at.isoformat()
         return obj_dict
-    
     
