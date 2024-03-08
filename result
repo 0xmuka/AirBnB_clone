@@ -1,0 +1,10 @@
+[BaseModel] (<function uuid4 at 0x7f40a5c15c60>) {'id': '<function uuid4 at 0x7f40a5c15c60>', 'created_at': datetime.datetime(2024, 3, 8, 10, 59, 37, 347685), 'updated_at': datetime.datetime(2024, 3, 8, 10, 59, 37, 347699), 'name': 'My First Model', 'my_number': 89}
+[BaseModel] (<function uuid4 at 0x7f40a5c15c60>) {'id': '<function uuid4 at 0x7f40a5c15c60>', 'created_at': datetime.datetime(2024, 3, 8, 10, 59, 37, 347685), 'updated_at': datetime.datetime(2024, 3, 8, 10, 59, 37, 347736), 'name': 'My First Model', 'my_number': 89}
+{'id': '<function uuid4 at 0x7f40a5c15c60>', 'created_at': '2024-03-08T10:59:37.347685', 'updated_at': '2024-03-08T10:59:37.347736', 'name': 'My First Model', 'my_number': 89, '__class__': 'BaseModel'}
+JSON of my_model:
+	id: (<class 'str'>) - <function uuid4 at 0x7f40a5c15c60>
+	created_at: (<class 'str'>) - 2024-03-08T10:59:37.347685
+	updated_at: (<class 'str'>) - 2024-03-08T10:59:37.347736
+	name: (<class 'str'>) - My First Model
+	my_number: (<class 'int'>) - 89
+	__class__: (<class 'str'>) - BaseModel
