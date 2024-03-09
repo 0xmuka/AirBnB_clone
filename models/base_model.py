@@ -2,14 +2,14 @@ import models
 import uuid
 from datetime import datetime
 
+
 class BaseModel:
     """Base Model for project"""
-    
+
     def __init__(self, *args, **kwargs):
-        
-        """Intialize a Base Model"""
-        
-        if kwargs:  # If kwargs is not empty
+        """Initialize a Base Model"""
+
+        if kwargs:
             for key, value in kwargs.items():
                 if key != '__class__':
                     setattr(self, key, value)
@@ -22,19 +22,16 @@ class BaseModel:
             self.created_at = datetime.now()
             self.updated_at = datetime.now()
 
-        
     def __str__(self) -> str:
-        """ 
-             should print: [<class name>] (<self.id>) <self.__dict__>
-        """
+        """Should print: [<class name>] (<self.id>) <self.__dict__>"""
         return ("[{}] ({}) {}").format(self.__class__.__name__, self.id, self.__dict__)
-    
+
     def save(self):
-        """bla bal"""
+        """Update updated_at attribute to current datetime"""
         self.updated_at = datetime.now()
-        
+
     def to_dict(self):
-        """bla bla bla"""
+        """Return dictionary representation of the instance"""
         obj_dict = self.__dict__.copy()
         obj_dict['__class__'] = self.__class__.__name__
         obj_dict['created_at'] = self.created_at.isoformat()
