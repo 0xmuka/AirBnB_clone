@@ -9,7 +9,7 @@ class HBNBCommand (cmd.Cmd):
     """
     HBNBCommand
     """
-    prompt = "(hbnb)" if sys.__stdin__.isatty() else ''
+    prompt = "(hbnb)"
 
     def do_quit(self, line):
         """
@@ -25,6 +25,7 @@ class HBNBCommand (cmd.Cmd):
         """
         print()
         exit()
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
