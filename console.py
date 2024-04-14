@@ -12,14 +12,18 @@ class HBNBCommand (cmd.Cmd):
     def do_quit(self, line):
         """To quit the program with hema"""
 
-        return True
+        exit()
+
+    def do_quit(self, line):
+        """to quit from program"""
+
+        print("Good Bye")
+        print()
 
     def do_EOF(self, line):
         """End of file"""
 
-        print()
-        exit()
-
+        return True
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
