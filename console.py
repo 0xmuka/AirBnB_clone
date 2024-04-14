@@ -26,14 +26,5 @@ class HBNBCommand (cmd.Cmd):
         print()
         exit()
 
-    def do_help(self, arg: str) -> bool | None:
-
-        """
-        to do help
-
-        """
-        return super().do_help(arg)
-
-
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
