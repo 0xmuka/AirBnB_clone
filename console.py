@@ -2,28 +2,29 @@
 """ Console Module """
 
 import cmd
-from models.base_model import BaseModel
+import sys
 
 
 class HBNBCommand (cmd.Cmd):
     """
     HBNBCommand
     """
-    prompt = "(hbnb)"
+    prompt = "(hbnb)" if sys.__stdin__.isatty() else ''
 
     def do_quit(self, line):
         """
         To quit the program with hema
 
         """
-        return True
+        exit()
 
     def do_EOF(self, line):
         """
         End of file
 
         """
-        return True
+        print()
+        exit()
 
     def do_help(self, arg: str) -> bool | None:
 
