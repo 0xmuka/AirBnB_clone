@@ -5,30 +5,24 @@ import cmd
 
 
 class HBNBCommand (cmd.Cmd):
-    """
-    HBNBCommand
-    """
+    """HBNBCommand"""
+
     prompt = "(hbnb)"
 
     def do_quit(self, line):
-        """
-        To quit the program with hema
+        """To quit the program with hema"""
 
-        """
         exit()
 
     def do_quit(self, line):
-        """
-        to quit from program
-        """
+        """to quit from program"""
+
         print("Good Bye")
         print()
 
     def do_EOF(self, line):
-        """
-        End of file
+        """End of file"""
 
-        """
         print()
         exit()
 
