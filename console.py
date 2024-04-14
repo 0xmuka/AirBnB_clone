@@ -2,14 +2,13 @@
 """ Console Module """
 
 import cmd
-import sys
 
 
 class HBNBCommand (cmd.Cmd):
     """
     HBNBCommand
     """
-    prompt = "(hbnb)" if sys.__stdin__.isatty() else ''
+    prompt = "(hbnb)"
 
     def do_quit(self, line):
         """
