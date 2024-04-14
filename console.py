@@ -16,13 +16,14 @@ class HBNBCommand (cmd.Cmd):
 
         """
         exit()
-        
-    def do_quit(self,line):
+
+    def do_quit(self, line):
         """
-        to quit from program 
+        to quit from program
         """
         print("Good Bye")
         print()
+
     def do_EOF(self, line):
         """
         End of file
