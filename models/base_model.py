@@ -14,10 +14,11 @@ class BaseModel:
             if 'updated_at' in key:
                 self.updated_at.isoformat()
         else:
+            from models import storage
             self.id = str(uuid.uuid4())
             self.created_at = dt.now()
             self.updated_at = dt.now()
-
+            storage.new(self)
     def __str__(self) -> str:
         return '[{}] ({}) {}'.format(
             self.__class__.__name__, self.id, self.__dict__)
