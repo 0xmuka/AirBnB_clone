@@ -1,24 +1,43 @@
+#!/usr/bin/python3
+"""This module defines a class to manage file storage for hbnb clone"""
+import json
+
+
 class FileStorage:
-    """
-        Class FileStorage serializes instances
-        to a JSON file and deserializes JSON file to instances
-    """
-    __FILE_PATH = "file.json"
+    """This class manages storage of hbnb models in JSON format"""
+    __file_path = 'file.json'
     __objects = {}
 
     def all(self):
-        """Return the dictionary __objects."""
-        return self.__class__.__objects
+        """Returns a dictionary of models currently in storage"""
+        return FileStorage.__objects
 
     def new(self, obj):
-        """Sets obj in __objects with key <obj class name>.id."""
-        key = f"{obj.__class__.__name__}.{obj.id}"
-        self.__class__.__objects[key] = obj
+        """Adds new object to storage dictionary"""
+        self.all().update({obj.to_dict()['__class__'] + '.' + obj.id: obj})
 
     def save(self):
-        """Save serialized objects to a JSON file."""
-        pass
+        """Saves storage dictionary to file"""
+        with open(FileStorage.__file_path, 'w') as f:
+            temp = {}
+            temp.update(FileStorage.__objects)
+            for key, val in temp.items():
+                temp[key] = val.to_dict()
+            json.dump(temp, f)
 
     def reload(self):
-        """Reload objects from a JSON file."""
-        pass
+        """Loads storage dictionary from file"""
+        from models.base_model import BaseModel
+
+        classes = {
+            'BaseModel': BaseModel
+        }
+
+        try:
+            temp = {}
+            with open(FileStorage.__file_path, 'r') as f:
+                temp = json.load(f)
+                for key, val in temp.items():
+                        self.all()[key] = classes[val['__class__']](**val)
+        except FileNotFoundError:
+            pass
