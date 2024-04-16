@@ -41,3 +41,5 @@ class FileStorage:
                         value['updated_at'])
                     # Assuming BaseModel is imported at the top of the file
                     FileStorage.__objects[key] = BaseModel(**value)
+        else:
+            return
