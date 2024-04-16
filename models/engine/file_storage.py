@@ -1,43 +1,45 @@
-#!/usr/bin/python3
-"""This module defines a class to manage file storage for hbnb clone"""
+"""Import Json to serializes and deserializes"""
+
 import json
+import os
+from datetime import datetime
 
 
 class FileStorage:
-    """This class manages storage of hbnb models in JSON format"""
+    """ File Storage Class"""
     __file_path = "file.json"
     __objects = {}
 
     def all(self):
-        """Returns a dictionary of models currently in storage"""
-        return FileStorage.__objects
+        """ return empty dictionary"""
+        return self.__objects
 
     def new(self, obj):
-        """Adds new object to storage dictionary"""
+        """Create new object"""
         self.all().update({obj.to_dict()['__class__'] + '.' + obj.id: obj})
 
     def save(self):
-        """Saves storage dictionary to file"""
-        with open(FileStorage.__file_path, 'w') as f:
-            temp = {}
-            temp.update(FileStorage.__objects)
-            for key, val in temp.items():
-                temp[key] = val.to_dict()
-            json.dump(temp, f)
+        """convert dictionary to json file string"""
+        with open(self.__file_path, 'w', encoding="utf8") as f:
+            json_str = {key: value.to_dict()
+                        for key, value in self.__objects.items()}
+            json.dump(json_str, f)
 
     def reload(self):
-        """Loads storage dictionary from file"""
+        """ reload json string from """
         from models.base_model import BaseModel
-
-        classes = {
-            'BaseModel': BaseModel
-        }
-
-        try:
-            temp = {}
-            with open(FileStorage.__file_path, 'r') as f:
-                temp = json.load(f)
-                for key, val in temp.items():
-                    self.all()[key] = classes[val['__class__']](**val)
-        except FileNotFoundError:
-            pass
+        if os.path.exists(self.__file_path):
+            with open(self.__file_path, 'r', encoding="utf8") as f:
+                try:
+                    data = json.load(f)
+                    for key, value in data.items():
+                        # Convert 'created_at' and 'updated_at'
+                        # strings to datetime objects all right
+                        value['created_at'] = datetime.fromisoformat(
+                            value['created_at'])
+                        value['updated_at'] = datetime.fromisoformat(
+                            value['updated_at'])
+                        # Assuming BaseModel is imported at the top of the file
+                        self.__objects[key] = BaseModel(**value)
+                except json.JSONDecodeError:
+                    pass
