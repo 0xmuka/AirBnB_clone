@@ -4,4 +4,3 @@ from models.engine.file_storage import FileStorage
 
 fs = FileStorage()
 fs.reload()
-                  

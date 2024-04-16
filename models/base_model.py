@@ -2,6 +2,7 @@ import uuid
 from datetime import datetime as dt
 from models import fs
 
+
 class BaseModel:
 
     def __init__(self, *args, **kwargs) -> None:
