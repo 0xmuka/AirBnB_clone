@@ -21,7 +21,7 @@ class FileStorage:
     def save(self):
 
         """convert dictionary to json file string"""
-        with open(self.__file_path, 'w', encoding="utf8") as f:
+        with open(FileStorage.__file_path, 'w', encoding="utf8") as f:
             json_str = {key: value.to_dict()
                         for key, value in self.__objects.items()}
             json.dump(json_str, f)
@@ -29,8 +29,8 @@ class FileStorage:
     def reload(self):
         """ reload json string from """
         from models.base_model import BaseModel
-        if os.path.exists(self.__file_path):
-            with open(self.__file_path, 'r', encoding="utf8") as f:
+        if os.path.exists(FileStorage.__file_path):
+            with open(FileStorage.__file_path, 'r', encoding="utf8") as f:
                 data = json.load(f)
                 for key, value in data.items():
                     # Convert 'created_at' and 'updated_at'
@@ -40,6 +40,6 @@ class FileStorage:
                     value['updated_at'] = datetime.fromisoformat(
                         value['updated_at'])
                     # Assuming BaseModel is imported at the top of the file
-                    self.__objects[key] = BaseModel(**value)
+                    FileStorage.__objects[key] = BaseModel(**value)
         else:
             return
