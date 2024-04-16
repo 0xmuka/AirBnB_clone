@@ -28,6 +28,9 @@ class FileStorage:
 
     def reload(self):
         """ reload json string from """
+        classes = {
+            'BaseModel' :BaseModel
+        }
         from models.base_model import BaseModel
         if os.path.exists(FileStorage.__file_path):
             with open(FileStorage.__file_path, 'r', encoding="utf8") as f:
@@ -40,6 +43,6 @@ class FileStorage:
                     value['updated_at'] = datetime.fromisoformat(
                         value['updated_at'])
                     # Assuming BaseModel is imported at the top of the file
-                    FileStorage.__objects[key] = BaseModel(**value)
+                    FileStorage.__objects[key] = classes['BaseModel'](**value)
         else:
             return

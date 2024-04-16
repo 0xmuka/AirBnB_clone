@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """ Console Module """
-
+from models.base_model import BaseModel
 import cmd
 
 
@@ -9,6 +9,10 @@ class HBNBCommand (cmd.Cmd):
 
     prompt = "(hbnb)"
 
+    def do_create(self, arg):
+        if not arg:
+            print("** class name missing **")
+        
     def do_quit(self, line):
         """Quit command to exit the program"""
 
