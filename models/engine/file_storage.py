@@ -31,16 +31,15 @@ class FileStorage:
         from models.base_model import BaseModel
         if os.path.exists(self.__file_path):
             with open(self.__file_path, 'r', encoding="utf8") as f:
-                try:
-                    data = json.load(f)
-                    for key, value in data.items():
-                        # Convert 'created_at' and 'updated_at'
-                        # strings to datetime objects all right
-                        value['created_at'] = datetime.fromisoformat(
-                            value['created_at'])
-                        value['updated_at'] = datetime.fromisoformat(
-                            value['updated_at'])
-                        # Assuming BaseModel is imported at the top of the file
-                        self.__objects[key] = BaseModel(**value)
-                except json.JSONDecodeError:
-                    pass
+                data = json.load(f)
+                for key, value in data.items():
+                    # Convert 'created_at' and 'updated_at'
+                    # strings to datetime objects all right
+                    value['created_at'] = datetime.fromisoformat(
+                        value['created_at'])
+                    value['updated_at'] = datetime.fromisoformat(
+                        value['updated_at'])
+                    # Assuming BaseModel is imported at the top of the file
+                    self.__objects[key] = BaseModel(**value)
+        else:
+            return
