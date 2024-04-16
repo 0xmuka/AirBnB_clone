@@ -19,8 +19,9 @@ class FileStorage:
         self.all().update({obj.to_dict()['__class__'] + '.' + obj.id: obj})
 
     def save(self):
+        
         """convert dictionary to json file string"""
-        with open(self.__file_path, 'w', encoding="utf8") as f:
+        with open(FileStorage.__file_path, 'w', encoding="utf8") as f:
             json_str = {key: value.to_dict()
                         for key, value in self.__objects.items()}
             json.dump(json_str, f)
@@ -29,7 +30,7 @@ class FileStorage:
         """ reload json string from """
         from models.base_model import BaseModel
         if os.path.exists(self.__file_path):
-            with open(self.__file_path, 'r', encoding="utf8") as f:
+            with open(FileStorage.__file_path, 'r', encoding="utf8") as f:
                 try:
                     data = json.load(f)
                     for key, value in data.items():
