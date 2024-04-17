@@ -44,8 +44,12 @@ class FileStorage:
                         value['created_at'])
                     value['updated_at'] = datetime.fromisoformat(
                         value['updated_at'])
-                    # Assuming BaseModel is imported at the top of the file
-                    FileStorage.__objects[key] = classes['BaseModel'](**value)
+                    
+                class_name = value.get('__class__')
+                if class_name == 'User':
+                    FileStorage.__objects[key] = User(**value)
+                else:
+                    FileStorage.__objects[key] = classes.get(class_name, BaseModel)(**value)
         else:
             return
 

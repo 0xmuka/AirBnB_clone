@@ -1,6 +1,5 @@
 #!/usr/bin/python3
 """ Console Module """
-from models.base_model import BaseModel
 import cmd
 from models import storage
 from models.user import User
