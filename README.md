@@ -58,7 +58,7 @@ $ echo "help" | ./console.py
 
 Documented commands (type help <topic>):
 ========================================
-EOF  help  quit
+EOF  help  quit all show ceate update destroy
 (hbnb) 
 $
 $ cat test_help
