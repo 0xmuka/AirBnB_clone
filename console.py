@@ -11,6 +11,7 @@ class HBNBCommand (cmd.Cmd):
     prompt = "(hbnb)"
 
     def do_create(self, arg):
+        """create new object"""
         if not arg:
             print("** class name missing **")
         elif arg not in storage.classes():
@@ -21,6 +22,7 @@ class HBNBCommand (cmd.Cmd):
             print(cls.id)
 
     def do_show(self, arg):
+        """show object with id"""
         # to handling cmd because take one parmeter all right?
         args = arg.split()
         if not args:
@@ -37,6 +39,28 @@ class HBNBCommand (cmd.Cmd):
             key = args[0] + "." + args[1]
             if key in objs:
                 print(objs[key])
+            else:
+                print("** no instance found **")
+
+    def do_destroy(self,arg):
+        """delete instance based on the class name and id"""
+        # to handling cmd because take one parmeter all right?
+        args = arg.split()
+        if not args:
+            print("** class name missing **")
+
+        elif args[0] not in storage.classes():
+            print("** class doesn't exist **")
+
+        elif len(args) < 2:
+            print("** instance id missing **")
+
+        else:
+            objs = storage.all()
+            key = args[0] + "." + args[1]
+            if key in objs:
+                del objs[key]
+                storage.save()
             else:
                 print("** no instance found **")
 
