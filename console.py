@@ -64,6 +64,24 @@ class HBNBCommand (cmd.Cmd):
             else:
                 print("** no instance found **")
 
+    def do_all(self, arg):
+        """Show all objects"""
+        if not arg:
+            print("** class name missing **")
+            return
+        elif arg not in storage.classes():
+            print("** class doesn't exist **")
+            return
+
+        objects = storage.all()
+        filtered_objects = [str(obj) for obj in objects.values() if obj.__class__.__name__ == arg]
+
+        if filtered_objects:
+            print(filtered_objects)
+        else:
+            print("** no instance found **")
+
+
     def do_quit(self, line):
         """Quit command to exit the program"""
         return True
