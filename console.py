@@ -4,11 +4,11 @@ import cmd
 from models import storage
 from models.user import User
 
+
 class HBNBCommand (cmd.Cmd):
     """HBNBCommand"""
 
     prompt = "(hbnb)"
-
 
     def do_create(self, arg):
         """create new object"""
@@ -23,8 +23,7 @@ class HBNBCommand (cmd.Cmd):
         obj = cls()
         obj.save()
         print(obj.id)
-        
-        
+
     def do_show(self, arg):
         """show object with id"""
         # to handling cmd because take one parmeter all right?

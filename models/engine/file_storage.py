@@ -35,7 +35,7 @@ class FileStorage:
         from models.state import State
         from models.city import City
         from models.amenity import Amenity
-        from models.review import Review 
+        from models.review import Review
         classes = {
             "BaseModel": BaseModel,
             "User": User,
@@ -45,18 +45,22 @@ class FileStorage:
             "Amenity": Amenity,
             "Review": Review
         }
-        
+
         try:
             with open(FileStorage.__file_path, 'r') as f:
                 data = json.load(f)
                 for key, value in data.items():
                     class_name = value.get('__class__')
                     if class_name in classes:
-                        # Convert 'created_at' and 'updated_at' strings to datetime objects
-                        value['created_at'] = datetime.fromisoformat(value['created_at'])
-                        value['updated_at'] = datetime.fromisoformat(value['updated_at'])
+                        # Convert 'created_at' and '
+                        # updated_at' strings to datetime objects
+                        value['created_at'] = datetime.fromisoformat(
+                            value['created_at'])
+                        value['updated_at'] = datetime.fromisoformat(
+                            value['updated_at'])
 
-                        # Create an instance of the class and add it to __objects
+                        # Create an instance of
+                        # the class and add it to __objects
                         obj = classes[class_name](**value)
                         FileStorage.__objects[key] = obj
         except FileNotFoundError:
@@ -64,7 +68,7 @@ class FileStorage:
 
     def classes(self):
         """
-        to correctly serialize and deserialize instances of the new classes
+        serialize and deserialize instances of the new classes
         """
         from models.base_model import BaseModel
         classes = {
