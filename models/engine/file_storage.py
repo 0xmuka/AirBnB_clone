@@ -29,9 +29,10 @@ class FileStorage:
     def reload(self):
         """ reload json string from """
         from models.base_model import BaseModel
-        from models.user import User 
+        from models.user import User
 
-        classes = {'BaseModel': BaseModel, 'User':User}
+        classes = {'BaseModel': BaseModel,
+                   'User': User}
 
         if os.path.exists(FileStorage.__file_path):
             with open(FileStorage.__file_path, 'r', encoding="utf8") as f:
