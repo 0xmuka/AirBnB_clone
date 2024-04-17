@@ -44,8 +44,12 @@ class FileStorage:
                         value['created_at'])
                     value['updated_at'] = datetime.fromisoformat(
                         value['updated_at'])
-                    # Assuming BaseModel is imported at the top of the file
-                    FileStorage.__objects[key] = classes['BaseModel'](**value)
+                    # Ensure the class name exists in the dictionary
+                    class_name = value.get('__class__')
+                    if class_name and class_name in classes:
+                        FileStorage.__objects[key] = classes[class_name](**value)
+                    else:
+                        print("Unknown class:", class_name)
         else:
             return
 
