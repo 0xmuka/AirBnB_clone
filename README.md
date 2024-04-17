@@ -2,7 +2,7 @@ Absolutely, let's add some emotion and include the "User" class in the README fi
 
 ---
 
-# The AirBnB Clone Project 😊
+# The AirBnB Clone Project 🚀
 
 ## The AirBnB Clone Project
 0x00. AirBnB clone - The console
