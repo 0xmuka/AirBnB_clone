@@ -4,22 +4,23 @@ import cmd
 from models import storage
 from models.user import User
 
-
 class HBNBCommand (cmd.Cmd):
     """HBNBCommand"""
 
     prompt = "(hbnb)"
+
 
     def do_create(self, arg):
         """create new object"""
         if not arg:
             print("** class name missing **")
             return
-        elif arg not in ["BaseModel","User", "Place", "State", "City", "Amenity", "Review"]:
+        elif arg not in storage.classes():
             print("** class doesn't exist **")
             return
 
-        obj = eval(arg)()
+        cls = storage.classes()[arg]
+        obj = cls()
         obj.save()
         print(obj.id)
 
@@ -30,7 +31,7 @@ class HBNBCommand (cmd.Cmd):
         if not args:
             print("** class name missing **")
 
-        elif args[0] not in ["BaseModel","User", "Place", "State", "City", "Amenity", "Review"]:
+        elif args[0] not in storage.classes():
             print("** class doesn't exist **")
 
         elif len(args) < 2:
@@ -51,7 +52,7 @@ class HBNBCommand (cmd.Cmd):
         if not args:
             print("** class name missing **")
 
-        elif args[0] not in ["BaseModel","User", "Place", "State", "City", "Amenity", "Review"]:
+        elif args[0] not in storage.classes():
             print("** class doesn't exist **")
 
         elif len(args) < 2:
@@ -71,7 +72,7 @@ class HBNBCommand (cmd.Cmd):
         if not arg:
             print("** class name missing **")
             return
-        elif arg not in ["BaseModel","User", "Place", "State", "City", "Amenity", "Review"]:
+        elif arg not in storage.classes():
             print("** class doesn't exist **")
             return
 
