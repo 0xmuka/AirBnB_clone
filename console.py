@@ -78,7 +78,7 @@ class HBNBCommand (cmd.Cmd):
                             if obj.__class__.__name__ == arg]
 
         if filtered_objects:
-            print(filtered_objects)
+            print("\n".join(filtered_objects))
         else:
             print("** no instance found **")
 
