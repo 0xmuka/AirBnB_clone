@@ -15,12 +15,11 @@ class HBNBCommand (cmd.Cmd):
         if not arg:
             print("** class name missing **")
             return
-        elif arg not in storage.classes():
+        elif arg not in ["BaseModel","User", "Place", "State", "City", "Amenity", "Review"]:
             print("** class doesn't exist **")
             return
 
-        cls = storage.classes()[arg]
-        obj = cls()
+        obj = eval(arg)()
         obj.save()
         print(obj.id)
 
@@ -31,7 +30,7 @@ class HBNBCommand (cmd.Cmd):
         if not args:
             print("** class name missing **")
 
-        elif args[0] not in storage.classes():
+        elif args[0] not in ["BaseModel","User", "Place", "State", "City", "Amenity", "Review"]:
             print("** class doesn't exist **")
 
         elif len(args) < 2:
@@ -52,7 +51,7 @@ class HBNBCommand (cmd.Cmd):
         if not args:
             print("** class name missing **")
 
-        elif args[0] not in storage.classes():
+        elif args[0] not in ["BaseModel","User", "Place", "State", "City", "Amenity", "Review"]:
             print("** class doesn't exist **")
 
         elif len(args) < 2:
@@ -72,7 +71,7 @@ class HBNBCommand (cmd.Cmd):
         if not arg:
             print("** class name missing **")
             return
-        elif arg not in storage.classes():
+        elif arg not in ["BaseModel","User", "Place", "State", "City", "Amenity", "Review"]:
             print("** class doesn't exist **")
             return
 
