@@ -81,6 +81,52 @@ class HBNBCommand (cmd.Cmd):
         else:
             print("** no instance found **")
 
+    def do_update(self, arg):
+        """Update an instance"""
+        args = arg.split()
+        
+        # Check for missing arguments
+        if not args:
+            print("** class name missing **")
+            return
+        elif len(args) < 2:
+            print("** instance id missing **")
+            return
+        elif len(args) < 3:
+            print("** attribute name missing **")
+            return
+        elif len(args) < 4:
+            print("** value missing **")
+            return
+
+        class_name, obj_id, attr_name, attr_value = args[0], args[1], args[2], ' '.join(args[3:])
+
+        # Check if the class exists
+        if class_name not in storage.classes():
+            print("** class doesn't exist **")
+            return
+
+        key = class_name + "." + obj_id
+        objs = storage.all()
+
+        # Check if the instance exists
+        if key not in objs:
+            print("** no instance found **")
+            return
+
+        # Check if the attribute name is valid and not one of the restricted attributes
+        if attr_name in ["id", "created_at", "updated_at"]:
+            print("** cannot update attribute name: id, created_at, or updated_at **")
+            return
+
+        obj = objs[key]
+
+        # Set the attribute value
+        setattr(obj, attr_name, attr_value)
+
+        # Save the changes
+        obj.save()
+
 
     def do_quit(self, line):
         """Quit command to exit the program"""
