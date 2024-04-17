@@ -9,25 +9,22 @@ class HBNBCommand (cmd.Cmd):
 
     prompt = "(hbnb)"
 
+
     def do_create(self, arg):
         """create new object"""
         if not arg:
             print("** class name missing **")
+            return
         elif arg not in storage.classes():
             print("** class doesn't exist **")
-        else:
-            try:
-                # Check if the class name is "User" and create an instance accordingly
-                if arg == "User":
-                    obj = User()
-                else:
-                    obj = storage.classes()[arg]()
-                obj.save()
-                print(obj.id)
-            except Exception as e:
-                print("** {}".format(str(e)))
+            return
 
-
+        cls = storage.classes()[arg]
+        obj = cls()
+        obj.save()
+        print(obj.id)
+        
+        
     def do_show(self, arg):
         """show object with id"""
         # to handling cmd because take one parmeter all right?
