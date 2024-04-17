@@ -19,6 +19,28 @@ class HBNBCommand (cmd.Cmd):
             cls = storage.classes()[arg]()
             cls.save()
             print(cls.id)
+            
+    def do_show(self, arg):
+        # to handling cmd because take one parmeter all right?
+        args = arg.split()
+        if not args:
+            print("** class name missing **")
+            
+        elif args[0] not in storage.classes():
+            print("** class doesn't exist **")
+            
+        elif len(args) < 2:
+            print("** instance id missing **")
+            
+        else:
+            objs = storage.all()
+            key = args[0] + "." + args[1]
+            if key in objs:
+                print(objs[key])
+            else:
+                print("** no instance found **")
+
+
     def do_quit(self, line):
         """Quit command to exit the program"""
 
