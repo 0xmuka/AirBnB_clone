@@ -4,11 +4,11 @@ import cmd
 from models import storage
 from models.user import User
 
+
 class HBNBCommand (cmd.Cmd):
     """HBNBCommand"""
 
     prompt = "(hbnb)"
-
 
     def do_create(self, arg):
         """create new object"""
