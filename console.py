@@ -17,9 +17,17 @@ class HBNBCommand (cmd.Cmd):
         elif arg not in storage.classes():
             print("** class doesn't exist **")
         else:
-            cls = storage.classes()[arg]()
-            cls.save()
-            print(cls.id)
+            try:
+                # Check if the class name is "User" and create an instance accordingly
+                if arg == "User":
+                    obj = User()
+                else:
+                    obj = storage.classes()[arg]()
+                obj.save()
+                print(obj.id)
+            except Exception as e:
+                print("** {}".format(str(e)))
+
 
     def do_show(self, arg):
         """show object with id"""
@@ -78,7 +86,7 @@ class HBNBCommand (cmd.Cmd):
                             if obj.__class__.__name__ == arg]
 
         if filtered_objects:
-            print("\n".join(filtered_objects))
+            print(filtered_objects)
         else:
             print("** no instance found **")
 
