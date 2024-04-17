@@ -2,6 +2,7 @@
 """ Console Module """
 from models.base_model import BaseModel
 import cmd
+from models import storage
 
 
 class HBNBCommand (cmd.Cmd):
@@ -12,7 +13,12 @@ class HBNBCommand (cmd.Cmd):
     def do_create(self, arg):
         if not arg:
             print("** class name missing **")
-        
+        elif arg not in storage.classes():
+            print("** class doesn't exist **")
+        else:
+            cls = storage.classes()[arg]()
+            cls.save()
+            print(cls.id)
     def do_quit(self, line):
         """Quit command to exit the program"""
 

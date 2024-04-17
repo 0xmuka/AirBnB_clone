@@ -29,7 +29,9 @@ class FileStorage:
     def reload(self):
         """ reload json string from """
         from models.base_model import BaseModel
-        classes = {'BaseModel' : BaseModel}
+
+        classes = {'BaseModel': BaseModel}
+
         if os.path.exists(FileStorage.__file_path):
             with open(FileStorage.__file_path, 'r', encoding="utf8") as f:
                 data = json.load(f)
@@ -44,3 +46,13 @@ class FileStorage:
                     FileStorage.__objects[key] = classes['BaseModel'](**value)
         else:
             return
+
+    def classes(self):
+        """
+        to correctly serialize and deserialize instances of the new classes
+        """
+        from models.base_model import BaseModel
+        classes = {
+            "BaseModel": BaseModel
+        }
+        return classes
