@@ -3,7 +3,7 @@
 from models.base_model import BaseModel
 import cmd
 from models import storage
-
+from models.user import User
 
 class HBNBCommand (cmd.Cmd):
     """HBNBCommand"""
